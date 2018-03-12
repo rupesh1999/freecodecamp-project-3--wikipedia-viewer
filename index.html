@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wikipedia viewer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="heading">WIKIPEDIA VIEWER</h1>
+        <p class="sub-text">search for any wikipedia article</p>
+        <input id="text-input" type="text" placeholder="article">
+        <button id="submit" class="">Search</button>
+    </div>
+    <div id="output" class="container">
+
+    </div>
+<script>
+    
+    $(document).ready(function() {
+        $("#submit").click(function() {
+            $("#output").html("");
+            var value = $("#text-input").val();
+            var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ value +"&namespace=0&format=json";
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: "false",
+                datatype: 'jsonp',
+                success: function(data , status , jqXHR) {
+                    for(var i=0; i<data[1].length; i++){
+                        $("#output").append(
+                            "<div class=\" link alert-secondary\"><a href='"+data[3][i]+"'><h1>"+data[1][i]+"<br></h2></a><p>"+data[2][i]+"</p></div>"
+                            );
+                    }
+                }
+            })
+            .fail(function() {
+               console.log("error")
+            })
+            
+
+        });
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body{
+    background-color: aqua;
+}
+#text-input{
+    border: 2px solid rgb(156, 23, 156);
+    position: relative;
+    top: 250px;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+.heading{
+    font-family: 'Dancing Script', cursive;
+    font-weight: 900;
+    position: relative;
+    color: rgb(156, 23, 156);
+    top: 200px;
+}
+.sub-text {
+    position: relative;
+    top: 210px;
+}
+#submit {
+    position: relative;
+    top: 250px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: 2px solid rgb(156, 23, 156);
+}
+
+#output {
+    position: relative;
+    top: 265px;
+}
+.link {
+    border: 2px solid rgb(156, 23, 156);
+    padding: 20px 10px;
+    border-radius: 20px;
+    margin-top: 30px;
+}
